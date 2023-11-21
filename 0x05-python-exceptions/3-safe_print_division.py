@@ -9,7 +9,7 @@ def safe_print_division(a, b):
         print(f"Am error occured at: {e}")
         return None
     else:
-        print("Inside result: {:.1f}".format(result))
+        print("Inside result: {:d}".format(result))
         return result
     finally:
         print("Finally: Division operation has completed")
