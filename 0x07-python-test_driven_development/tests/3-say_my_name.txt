@@ -1,0 +1,28 @@
+   
+   ## Usage
+   """Print a name.
+
+    Args:
+        first_name (str): The first name to print.
+        last_name (str): The last name to print.
+
+    Raises:
+        TypeError: If either of first_name or last_name are not strings.
+
+    Examples:
+    >>> say_my_name("John", "Doe")
+    My name is John Doe
+
+    >>> say_my_name("Alice")
+    My name is Alice
+
+    >>> say_my_name(123, "Smith")
+    Traceback (most recent call last):
+        ...
+    TypeError: first_name must be a string
+
+    >>> say_my_name("Bob", 456)
+    Traceback (most recent call last):
+        ...
+    TypeError: last_name must be a string
+    """
