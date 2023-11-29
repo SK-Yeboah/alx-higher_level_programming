@@ -1,0 +1,28 @@
+"""Print a square with the # character.
+
+    Args:
+        size (int): The height/width of the square.
+
+    Raises:
+        TypeError: If size is not an integer.
+        ValueError: If size is < 0.
+
+    Examples:
+    >>> print_square(3)
+    ###
+    ###
+    ###
+
+    >>> print_square(0)
+    # (no output, as it is an empty square)
+
+    >>> print_square(-5)
+    Traceback (most recent call last):
+        ...
+    ValueError: size must be >= 0
+
+    >>> print_square("four")
+    Traceback (most recent call last):
+        ...
+    TypeError: size must be an integer
+    """
