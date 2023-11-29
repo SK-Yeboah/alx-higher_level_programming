@@ -1,0 +1,23 @@
+ """Print text with two new lines after each '.', '?', and ':'.
+
+    Args:
+        text (str): The text to print.
+
+    Raises:
+        TypeError: If text is not a string.
+
+    Examples:
+    >>> text_indentation("This is a sample text. It has multiple sentences? And some colons: like this.")
+    This is a sample text.
+    It has multiple sentences?
+    And some colons:
+    like this.
+
+    >>> text_indentation("One line without punctuation.")
+    One line without punctuation.
+
+    >>> text_indentation(123)
+    Traceback (most recent call last):
+        ...
+    TypeError: text must be a string
+    """
