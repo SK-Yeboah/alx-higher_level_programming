@@ -1,0 +1,44 @@
+=========================
+How to Utilize 0-add_integer.py
+=========================
+
+This module introduces a function for integer addition, ``add_integer(a, b=98)``.
+
+## Usage
+
+The ``add_integer(...)`` function calculates the sum of its two arguments. For numeric values, this result is equivalent to using the ``+`` operator.
+
+```python
+>>> add_integer = __import__('0-add_integer').add_integer
+>>> add_integer(2, 3)
+5
+>>> add_integer(2, -3)
+-1
+>>> add_integer(2.0, 3.0)
+5
+>>> add_integer(2.9, 0.2)
+2
+>>> add_integer(2.3, -3)
+-1
+>>> add_integer(2)
+100
+>>> add_integer("hello", 3)
+TypeError: a must be an integer
+>>> add_integer(2, "hello")
+TypeError: b must be an integer
+>>> add_integer(None)
+TypeError: a must be an integer
+>>> add_integer(2.3, None)
+TypeError: b must be an integer
+>>> add_integer("hello", "there")
+TypeError: a must be an integer
+>>> add_integer(float('inf'))
+OverflowError: cannot convert float infinity to integer
+>>> add_integer(2, float('inf'))
+OverflowError: cannot convert float infinity to integer
+>>> add_integer(float('nan'))
+ValueError: cannot convert float NaN to integer
+>>> add_integer(float('nan'))
+ValueError: cannot convert float NaN to integer
+>>> add_integer(2, float('nan'))
+ValueError: cannot convert float NaN to integer
