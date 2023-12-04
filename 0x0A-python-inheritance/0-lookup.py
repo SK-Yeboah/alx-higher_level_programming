@@ -3,4 +3,4 @@
 
 def lookup(obj):
     """Return a list of an object's available attributes."""
-    return [attribute for attribute in dir(obj) if not attribute.startswith("__")]
+    return dir(obj)
