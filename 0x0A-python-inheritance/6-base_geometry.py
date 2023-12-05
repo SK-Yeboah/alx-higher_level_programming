@@ -4,6 +4,8 @@
 
 
 class BaseGeometry:
+    """The base Geometry"""
+
     def area(self):
         """
         Calculate the area of the geometry.
