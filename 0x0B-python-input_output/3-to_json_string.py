@@ -1,7 +1,14 @@
 #!/usr/bin/python3
 import json
 
-"""Funtion to define JSON representation"""
 def to_json_string(my_obj):
-    """Representing json dunmp"""
+    """
+    Function to define JSON representation.
+
+    Parameters:
+    - my_obj: The object to be converted to a JSON-formatted string.
+
+    Returns:
+    - str: The JSON-formatted string.
+    """
     return json.dumps(my_obj)
