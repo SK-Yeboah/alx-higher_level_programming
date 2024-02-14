@@ -1,8 +1,6 @@
 #!/usr/bin/node
 
 
-// esrever.js
-
 export function esrever (list) {
   // Create an empty array to store the reversed list
   let reversedList = [];
