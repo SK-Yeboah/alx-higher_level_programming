@@ -1,8 +1,7 @@
 #!/usr/bin/node
 const firstArgument = process.argv[2]
-
 if(firstArgument !== undefined){
-    console.log(firstArgument)
+console.log(firstArgument)
 }else{
-    console.log("Argument found")
+console.log("Argument found")
 }
