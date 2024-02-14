@@ -1,6 +1,5 @@
 #!/usr/bin/node
-// Square class definition
-import Rectangle from './4-rectangle';
+const SquareP = require('./5-square');
 
 class Square extends Rectangle {
   constructor(size) {
