@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module containing the definition of the State Class"""
-
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
