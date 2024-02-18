@@ -1,42 +1,18 @@
 #!/usr/bin/python3
 """  lists all states from the database hbtn_0e_0_usa """
-import sys
 import MySQLdb
+import sys
 
-if __name__== "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
-        sys.exit(1)
 
-    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
-
-    """Connecting To MySQL Server"""
-    try:   
-        db = MySQLdb.connect(host="localhost", user =username, passwd=password, db = database, port=33306)
-    except MySQLdb.Error as e:
-        print("Error connecting to the MySQL:{}".format(e))
-
-    """Creating  A Cursor Object"""
-    cursor = db.cursor()
-
-    """Query To Find All States from hbtn_0e_0_use"""
-    query = "SELECT cities.id, cities.name, states.name FROM cities \
-             JOIN states ON cities.state_id = states.id \
-             WHERE states.name = %s ORDER BY cities.id ASC"
-
-    """Executing The Query"""
-    try:
-        cursor.execute(query, (state_name,))
-    except MySQLdb.Error as e:
-        print("Error executing query: {}".format())
-        db.close()
-        sys.exit(1)
-
-    """Fetch All And Display The Result"""
-    result = cursor.fetchall()
-    for row in result:
-        print(row)
-
-    """Close the cursor and database connection"""
-    cursor.close()
+if __name__ == "__main__":
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    cur = db.cursor()
+    cur.execute("""SELECT cities.name FROM
+                cities INNER JOIN states ON states.id=cities.state_id
+                WHERE states.name=%s""", (sys.argv[4],))
+    rows = cur.fetchall()
+    tmp = list(row[0] for row in rows)
+    print(*tmp, sep=", ")
+    cur.close()
     db.close()
