@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all State objects from the database hbtn_0e_6_usa."""
+"""Prints the first State object from the database hbtn_0e_6_usa."""
 
 import sys
 from sqlalchemy import create_engine
@@ -25,12 +25,14 @@ if __name__ == "__main__":
     # Create a session
     session = Session()
 
-    # Query all State objects and sort them by id
-    states = session.query(State).order_by(State.id).all()
+    # Query the first State object
+    first_state = session.query(State).order_by(State.id).first()
 
-    # Display the results
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
+    # Display the result
+    if first_state:
+        print("{}: {}".format(first_state.id, first_state.name))
+    else:
+        print("Nothing")
 
     # Close the session
     session.close()
