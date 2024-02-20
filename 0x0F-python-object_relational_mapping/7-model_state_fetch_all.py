@@ -7,11 +7,11 @@ from model_state import Base, State
 
 
 if __name__ == '__main__':
-    if len(sys.argv)  != 4:
+    if len(sys.argv)  != 5:
         print("Usage: {} <mysql_username> <mysql_password> <database_name>".format(sys.argv[0]))
         sys.exit(1)
     
-    username, password, database = sys.argv[1], sys.argv[2], sys.argv[3]
+    username, password, database, state_name = sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4]
 
     # Database connection string
     db_connection = 'mysql+mysqldb://{}:{}@localhost:3306/{}'
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     session = Session()
 
     #Query all state objects and sort them by id
-    states = session.query(state).order_by(State.id).all()
+    states = session.query(state_name).order_by(State.id).all()
 
     #Display results
     for state in states:
