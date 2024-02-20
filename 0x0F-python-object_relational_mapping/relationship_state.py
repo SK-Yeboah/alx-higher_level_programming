@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-Module to define the State class.
-"""
+"""Module to define the State class."""
 
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
