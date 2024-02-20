@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Adds the State “California” with the City “San Francisco”"""
+"""Lists all State objects, and corresponding City objects, from the database"""
 
 import sys
 from sqlalchemy import create_engine
@@ -14,7 +14,7 @@ if __name__ == "__main__":
     database = sys.argv[3]
 
     # Connect to MySQL database
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
                            .format(username, password, database),
                            pool_pre_ping=True)
 
@@ -27,16 +27,14 @@ if __name__ == "__main__":
     # Create a Session
     session = Session()
 
-    # Add a new state and city
-    new_state = State(name="California")
-    new_city = City(name="San Francisco", state=new_state)
+    # Query the database to fetch all State objects and their associated City objects
+    states = session.query(State).order_by(State.id).all()
 
-    # Add objects to the session
-    session.add(new_state)
-    session.add(new_city)
-
-    # Commit the transaction
-    session.commit()
+    # Print the results
+    for state in states:
+        print("{}: {}".format(state.id, state.name))
+        for city in state.cities:
+            print("\t{}: {}".format(city.id, city.name))
 
     # Close the session
     session.close()
