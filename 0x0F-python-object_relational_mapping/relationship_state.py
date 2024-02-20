@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 """Module to define the State class."""
-
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 from relationship_city import Base, City
 
 class State(Base):
-    """
-    State class to represent the states table.
-    """
+    """State class to represent the states table."""
 
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True, nullable=False, autoincrement=True)
