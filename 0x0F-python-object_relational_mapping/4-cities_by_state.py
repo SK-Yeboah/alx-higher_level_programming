@@ -26,8 +26,9 @@ if __name__ == "__main__":
     # Create a cursor object
     cursor = db.cursor()
 
-    # Execute the query
-    query = "SELECT * FROM cities ORDER BY cities.id ASC"
+    # Execute the query to retrieve cities
+    query = "SELECT cities.id, cities.name, states.name FROM cities \
+             JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC"
     try:
         cursor.execute(query)
     except MySQLdb.Error as e:
