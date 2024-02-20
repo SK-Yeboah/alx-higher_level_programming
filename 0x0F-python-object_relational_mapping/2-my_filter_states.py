@@ -1,17 +1,44 @@
 #!/usr/bin/python3
-"""  lists all states from the database hbtn_0e_0_usa """
-import MySQLdb
-import sys
+"""
+Script that takes in an argument and displays all values in the states
+table of hbtn_0e_0_usa where name matches the argument.
+"""
 
+import sys
+import MySQLdb
 
 if __name__ == "__main__":
-    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
-                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
-    cur = db.cursor()
-    cur.execute("""SELECT * FROM states WHERE name
-                LIKE BINARY 'N%' ORDER BY states.id""")
-    rows = cur.fetchall()
+    # Database connection parameters
+    username = sys.argv[1]
+    password = sys.argv[2]
+    database = sys.argv[3]
+    state_name = sys.argv[4]
+
+    # Connect to MySQL database
+    db = MySQLdb.connect(
+        host="localhost",
+        port=3306,
+        user=username,
+        passwd=password,
+        db=database
+    )
+
+    # Create a cursor object using cursor() method
+    cursor = db.cursor()
+
+    # Construct the SQL query
+    query = "SELECT * FROM states WHERE name='{}' ORDER BY id".format(state_name)
+
+    # Execute the SQL query
+    cursor.execute(query)
+
+    # Fetch all the rows in a list of lists
+    rows = cursor.fetchall()
+
+    # Print the results
     for row in rows:
         print(row)
-    cur.close()
+
+    # Close the cursor and database connection
+    cursor.close()
     db.close()
