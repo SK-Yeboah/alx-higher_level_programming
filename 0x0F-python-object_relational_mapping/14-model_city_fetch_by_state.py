@@ -1,10 +1,11 @@
 #!/usr/bin/python3
-"""Deletes all State objects with a name containing the letter 'a' from the database hbtn_0e_6_usa."""
-
+"""Script to print all City objects from the database hbtn_0e_14_usa."""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
+from model_city import City
+
 
 if __name__ == "__main__":
     # Check if the correct number of command-line arguments is provided
@@ -25,15 +26,12 @@ if __name__ == "__main__":
     # Create a session
     session = Session()
 
-    # Query State objects with a name containing the letter 'a'
-    states_with_a = session.query(State).filter(State.name.like('%a%')).all()
+    # Query all City objects and join with State to get the state name
+    cities = session.query(City, State).filter(City.state_id == State.id).order_by(City.id).all()
 
-    # Delete the State objects
-    for state in states_with_a:
-        session.delete(state)
-
-    # Commit the changes
-    session.commit()
+    # Print the results
+    for city, state in cities:
+        print("{}: ({}) {}".format(state.name, city.id, city.name))
 
     # Close the session
     session.close()
